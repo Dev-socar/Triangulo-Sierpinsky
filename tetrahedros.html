@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triangulo Sierpinsky - 3D</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body class="bg-slate-900">
+  <main class="w-[90%] h-72 flex flex-col justify-center gap-5 items-center mx-auto my-0 mt-5">
+    <h1 class="text-center text-slate-100 text-xl">Triangulo Sierpinsky con Tetrahedros</h1>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      //contiene el shader de vértices. Este shader se encarga de transformar las coordenadas de los vértices de los objetos en coordenadas de pantalla y de pasar datos adicionales como el color a los shaders de fragmentos.
+      
+        attribute vec4 vPosition;
+        attribute vec4 vColor;
+        varying vec4 fColor;
+        void main() {
+        	gl_PointSize = 1.0;
+          gl_Position = vPosition;
+          fColor = vColor;
+        }
+        </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+          //contiene el shader de fragmentos. Este shader se encarga de calcular el color de cada píxel dentro de los objetos dibujados en la pantalla.
+
+          precision mediump float;
+          varying vec4 fColor;
+          void main() {
+            gl_FragColor = fColor;
+          }
+        </script>
+    <canvas id="lienzo-3d"></canvas>
+    <a href="index.html"
+      class="mt-2 block w-max border p-2 rounded-md hover:bg-slate-100 hover:text-slate-900 ease-linear duration-300 text-slate-200">
+      Regresar</a>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+  <script src="js/tetrahedros.js"></script>
+</body>
+
+</html>
